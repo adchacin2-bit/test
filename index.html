@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TI-36X Scientific Calculator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="calculator">
+    <div class="calculator-top">
+      <div class="brand-label">TEXAS INSTRUMENTS</div>
+      <div class="model-label">TI-36X</div>
+      <div class="solar-panel">
+        <div class="solar-cell"></div>
+        <div class="solar-cell"></div>
+        <div class="solar-cell"></div>
+        <div class="solar-cell"></div>
+      </div>
+    </div>
+
+    <div class="display-area">
+      <div class="display">
+        <div class="display-indicators">
+          <span id="ind-2nd" class="indicator">2nd</span>
+          <span id="ind-hyp" class="indicator">HYP</span>
+          <span id="ind-memory" class="indicator">M</span>
+          <span id="ind-deg" class="indicator active">DEG</span>
+          <span id="ind-rad" class="indicator">RAD</span>
+          <span id="ind-grad" class="indicator">GRAD</span>
+          <span id="ind-fix" class="indicator">FIX</span>
+          <span id="ind-sci" class="indicator">SCI</span>
+          <span id="ind-eng" class="indicator">ENG</span>
+          <span id="ind-paren" class="indicator"></span>
+        </div>
+        <div class="display-expression" id="expression"></div>
+        <div class="display-main" id="display">0</div>
+      </div>
+    </div>
+
+    <div class="button-area">
+      <!-- Row 1: 2nd function labels -->
+      <div class="button-row second-labels">
+        <span class="second-label">HYP</span>
+        <span class="second-label">x!</span>
+        <span class="second-label">PRB</span>
+        <span class="second-label">RAND</span>
+        <span class="second-label">ANS</span>
+        <span class="second-label">K</span>
+      </div>
+      <!-- Row 1 -->
+      <div class="button-row">
+        <button class="btn btn-function btn-2nd" data-action="2nd">2nd</button>
+        <button class="btn btn-function" data-action="sin" data-second="hyp">sin</button>
+        <button class="btn btn-function" data-action="cos" data-second="nPr">cos</button>
+        <button class="btn btn-function" data-action="tan" data-second="rand">tan</button>
+        <button class="btn btn-function" data-action="pi" data-second="ans">&pi;</button>
+        <button class="btn btn-function" data-action="on-c" data-second="off">ON/C</button>
+      </div>
+
+      <!-- Row 2: 2nd function labels -->
+      <div class="button-row second-labels">
+        <span class="second-label">sin<sup>-1</sup></span>
+        <span class="second-label">cos<sup>-1</sup></span>
+        <span class="second-label">tan<sup>-1</sup></span>
+        <span class="second-label">DRG&gt;</span>
+        <span class="second-label">FIX</span>
+      </div>
+      <!-- Row 2 -->
+      <div class="button-row">
+        <button class="btn btn-function" data-action="pow" data-second="asin">x<sup>y</sup></button>
+        <button class="btn btn-function" data-action="sqrt" data-second="acos">&radic;x</button>
+        <button class="btn btn-function" data-action="lparen" data-second="atan">(</button>
+        <button class="btn btn-function" data-action="rparen" data-second="drg">)</button>
+        <button class="btn btn-function" data-action="div" data-second="fix">&divide;</button>
+      </div>
+
+      <!-- Row 3: 2nd function labels -->
+      <div class="button-row second-labels">
+        <span class="second-label">x&sup3;</span>
+        <span class="second-label">&#x2072;&radic;</span>
+        <span class="second-label">EXP</span>
+        <span class="second-label">nCr</span>
+        <span class="second-label"></span>
+      </div>
+      <!-- Row 3 -->
+      <div class="button-row">
+        <button class="btn btn-function" data-action="square" data-second="cube">x&sup2;</button>
+        <button class="btn btn-function" data-action="recip" data-second="cbrt">1/x</button>
+        <button class="btn btn-function" data-action="log" data-second="exp">log</button>
+        <button class="btn btn-function" data-action="ln" data-second="ncr">ln</button>
+        <button class="btn btn-operation" data-action="multiply">&times;</button>
+      </div>
+
+      <!-- Row 4: 2nd function labels -->
+      <div class="button-row second-labels">
+        <span class="second-label">RCL</span>
+        <span class="second-label">x&#x21D4;M</span>
+        <span class="second-label">10<sup>x</sup></span>
+        <span class="second-label">e<sup>x</sup></span>
+        <span class="second-label"></span>
+      </div>
+      <!-- Row 4 -->
+      <div class="button-row">
+        <button class="btn btn-function" data-action="sto" data-second="rcl">STO</button>
+        <button class="btn btn-function" data-action="mplus" data-second="xchgm">M+</button>
+        <button class="btn btn-function" data-action="tenx" data-second="tenx">10<sup>x</sup></button>
+        <button class="btn btn-function" data-action="ex" data-second="ex">e<sup>x</sup></button>
+        <button class="btn btn-operation" data-action="subtract">&minus;</button>
+      </div>
+
+      <!-- Row 5: 2nd function labels -->
+      <div class="button-row second-labels">
+        <span class="second-label"></span>
+        <span class="second-label">INS</span>
+        <span class="second-label">DEL</span>
+        <span class="second-label">ABS</span>
+        <span class="second-label">%</span>
+      </div>
+      <!-- Row 5 -->
+      <div class="button-row">
+        <button class="btn btn-function" data-action="sign">+/-</button>
+        <button class="btn btn-function" data-action="ee" data-second="ins">EE</button>
+        <button class="btn btn-number" data-action="number" data-value="7" data-second="del">7</button>
+        <button class="btn btn-number" data-action="number" data-value="8" data-second="abs">8</button>
+        <button class="btn btn-number" data-action="number" data-value="9" data-second="percent">9</button>
+        <button class="btn btn-operation" data-action="add">+</button>
+      </div>
+
+      <!-- Row 6 -->
+      <div class="button-row second-labels">
+        <span class="second-label"></span>
+        <span class="second-label"></span>
+        <span class="second-label"></span>
+        <span class="second-label"></span>
+        <span class="second-label"></span>
+        <span class="second-label"></span>
+      </div>
+      <div class="button-row">
+        <button class="btn btn-function" data-action="dms">DMS</button>
+        <button class="btn btn-function" data-action="dd">D/D</button>
+        <button class="btn btn-number" data-action="number" data-value="4">4</button>
+        <button class="btn btn-number" data-action="number" data-value="5">5</button>
+        <button class="btn btn-number" data-action="number" data-value="6">6</button>
+        <button class="btn btn-operation btn-equals" data-action="equals" rowspan="2">=</button>
+      </div>
+
+      <!-- Row 7 -->
+      <div class="button-row second-labels">
+        <span class="second-label"></span>
+        <span class="second-label"></span>
+        <span class="second-label"></span>
+        <span class="second-label"></span>
+        <span class="second-label"></span>
+      </div>
+      <div class="button-row">
+        <button class="btn btn-function" data-action="fraca">a b/c</button>
+        <button class="btn btn-function" data-action="fracd">d/c</button>
+        <button class="btn btn-number" data-action="number" data-value="1">1</button>
+        <button class="btn btn-number" data-action="number" data-value="2">2</button>
+        <button class="btn btn-number" data-action="number" data-value="3">3</button>
+      </div>
+
+      <!-- Row 8 -->
+      <div class="button-row second-labels">
+        <span class="second-label"></span>
+        <span class="second-label"></span>
+        <span class="second-label"></span>
+        <span class="second-label"></span>
+      </div>
+      <div class="button-row">
+        <button class="btn btn-function" data-action="clear">CE/C</button>
+        <button class="btn btn-number" data-action="number" data-value="0">0</button>
+        <button class="btn btn-number" data-action="decimal">.</button>
+        <button class="btn btn-function" data-action="factorial">n!</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="calculator.js"></script>
+</body>
+</html>
